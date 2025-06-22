@@ -1,7 +1,8 @@
 import _knex from "knex";
-import knexConfig from "#config/knex/knexfile.js";
 
-const knex = _knex(knexConfig);
+const knexConfig = require("../../knexfile.js");
+const environment = process.env.NODE_ENV || "development";
+const knex = _knex(knexConfig[environment]);
 export default knex;
 
 function logMigrationResults(action: string, result: [number, string[]]) {
